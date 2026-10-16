@@ -1,18 +1,22 @@
+
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+// Function implemented in boot_sequence.cpp
+bool runBootSequence();
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    Serial.begin(115200);
+    delay(1000);
+
+    bool bootOK = runBootSequence();
+
+    if (bootOK) {
+        Serial.println("System ready for rowing.");
+    } else {
+        Serial.println("System error. Check diagnostics.");
+    }
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    // Rowing coach functionality will be added later.
 }
