@@ -1,8 +1,7 @@
 
 #pragma once
 
-// Print all MPU6050 measurements to Serial.
-void printMPUValues();
+#include <Arduino.h>
 
-// Read and print measurements repeatedly for debugging.
-void runMPUDebug();
+bool initMPUDebug();
+void updateMPUDebug();
