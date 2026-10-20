@@ -1,22 +1,24 @@
 
 #include <Arduino.h>
+#include "boot_sequence.h"
+#include "mpu_debug.h"
 
-// Function implemented in boot_sequence.cpp
-bool runBootSequence();
+bool systemReady = false;
 
 void setup() {
     Serial.begin(115200);
     delay(1000);
 
-    bool bootOK = runBootSequence();
+    systemReady = runBootSequence();
 
-    if (bootOK) {
-        Serial.println("System ready for rowing.");
+    if (systemReady) {
+        Serial.println("ContaVogas ready!");
+        runMPUDebug();
     } else {
-        Serial.println("System error. Check diagnostics.");
+        Serial.println("Startup failed. Check hardware.");
     }
 }
 
 void loop() {
-    // Rowing coach functionality will be added later.
+    // Debug mode runs inside runMPUDebug().
 }
